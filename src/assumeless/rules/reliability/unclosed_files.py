@@ -12,10 +12,13 @@ class UnclosedFileRule(ASTRule):
         # We listen for Assignments to catch `f = open(...)`
         return [ast.Assign]
 
-    def visit(self, node: ast.Assign, visitor: AnalysisVisitor):
+    def visit(self, node: ast.AST, visitor: AnalysisVisitor) -> None:
         """
         Detects `f = open(...)` which suggests missing context manager.
         """
+        if not isinstance(node, ast.Assign):
+            return
+
         if isinstance(node.value, ast.Call):
             if isinstance(node.value.func, ast.Name):
                 if node.value.func.id == "open":

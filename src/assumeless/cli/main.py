@@ -38,7 +38,7 @@ def perform_scan(path: str, show_all: bool, output_json: bool) -> List[Finding]:
 
 @click.group(invoke_without_command=True)
 @click.pass_context
-def main(ctx):
+def main(ctx: click.Context) -> None:
     """AssumeLess: Find risky hidden assumptions."""
     if ctx.invoked_subcommand is None:
         # Default behavior: Show banner and help
@@ -50,7 +50,7 @@ def main(ctx):
 @click.option('--version', is_flag=True, help="Show version info")
 @click.option('--all', 'show_all', is_flag=True, help="Show all findings")
 @click.option('--json', 'output_json', is_flag=True, help="Output JSON")
-def scan(path, version, show_all, output_json):
+def scan(path: str, version: bool, show_all: bool, output_json: bool) -> None:
     """Scan codebase and show top 2–3 risky assumptions."""
     if version:
         print_banner()
@@ -68,7 +68,7 @@ def scan(path, version, show_all, output_json):
 @click.argument('path', default='.', type=click.Path(exists=True))
 @click.option('--all', 'show_all', is_flag=True, help="Show all findings")
 @click.option('--json', 'output_json', is_flag=True, help="Output JSON")
-def doctor(path, show_all, output_json):
+def doctor(path: str, show_all: bool, output_json: bool) -> None:
     """Alias for scan (Code Doctor)."""
     # Distinct handler calling the same logic
     findings = perform_scan(path, show_all, output_json)
@@ -81,7 +81,7 @@ def doctor(path, show_all, output_json):
 
 @main.command()
 @click.argument('finding_id')
-def explain(finding_id):
+def explain(finding_id: str) -> None:
     """Show details for one finding."""
     scanner = Scanner()
     found_rule = None
@@ -104,20 +104,20 @@ def explain(finding_id):
         console.print("Run `assumeless rules` to see valid IDs.")
 
 @main.command()
-def help():
+def help() -> None:
     """Show help + ASCII banner."""
     print_banner()
     with click.Context(main) as ctx:
         click.echo(main.get_help(ctx))
 
 @main.command()
-def version():
+def version() -> None:
     """Show version + ASCII banner."""
     print_banner()
 
 @main.command()
 @click.argument('path', default='.', type=click.Path(exists=True))
-def config(path):
+def config(path: str) -> None:
     """Show loaded config summary."""
     conf = Config.load(path)
     console.print(f"[bold]Loaded Configuration from {path}[/bold]")
@@ -127,7 +127,7 @@ def config(path):
     console.print(f"Cache Enabled: {conf.enable_cache}")
 
 @main.command()
-def rules():
+def rules() -> None:
     """List available rule IDs."""
     scanner = Scanner()
     rules = sorted(set([(r.id, r.name) for sublist in scanner.registry.values() for r in sublist]))
@@ -137,7 +137,7 @@ def rules():
         console.print(f" - [cyan]{rid}[/cyan]: {rname}")
 
 @main.command()
-def clear_cache():
+def clear_cache() -> None:
     """Clear incremental scan cache."""
     cache = FileHashCache()
     if os.path.exists(cache.cache_path):
@@ -150,7 +150,7 @@ def clear_cache():
 
 @main.command()
 @click.argument('path', default='.', type=click.Path(exists=True))
-def docs(path):
+def docs(path: str) -> None:
     """Scan for documentation drift."""
     console.print("AssumeLess Docs")
     

@@ -11,10 +11,13 @@ class BroadExceptionRule(ASTRule):
     def subscribe(self) -> List[Type[ast.AST]]:
         return [ast.ExceptHandler]
 
-    def visit(self, node: ast.ExceptHandler, visitor: AnalysisVisitor):
+    def visit(self, node: ast.AST, visitor: AnalysisVisitor) -> None:
         """
         Detects `except Exception:` or bare `except:`.
         """
+        if not isinstance(node, ast.ExceptHandler):
+            return
+
         is_broad = False
         if node.type is None:
             # Bare exception

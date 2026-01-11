@@ -38,6 +38,7 @@ class HardcodedPathRule(Rule):
                     description="Hardcoded absolute file system path detected.",
                     invisibility=Invisibility.EXPLICIT, # It's right there in the code
                     blast_radius=BlastRadius.SYSTEM,  # Breaks on different machines/deployments
-                    failure_mode=FailureMode.CRASH    # FileNotFoundError
+                    failure_mode=FailureMode.CRASH,    # FileNotFoundError
+                    rule_name=self.name
                 ))
         return findings

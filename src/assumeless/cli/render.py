@@ -18,7 +18,7 @@ BANNER = r"""
         \/      \/      \/              \/      \/            \/      \/      \/ 
 """
 
-def print_banner():
+def print_banner() -> None:
     console.print(Text(BANNER, style="bold blue"))
     console.print("  [dim]Assumptions-first diagnostic tool v1.0.0[/dim]\n")
 
@@ -42,7 +42,7 @@ def get_human_consequence(mode: FailureMode) -> str:
     }
     return mapping.get(mode, "Unpredictable behavior.")
 
-def print_grouped_panel(rule_id: str, findings: List[Finding], index: int):
+def print_grouped_panel(rule_id: str, findings: List[Finding], index: int) -> None:
     # Consolidate findings
     title_finding = findings[0]
     description = title_finding.description
@@ -78,7 +78,7 @@ def print_grouped_panel(rule_id: str, findings: List[Finding], index: int):
     
     console.print(Panel(content, title=f"[{color}]{title}[/{color}]", border_style=color, expand=False, padding=(0,2)))
 
-def print_doctor_report(findings: List[Finding]):
+def print_doctor_report(findings: List[Finding]) -> None:
     if not findings:
         console.print("[green]✓ No risky assumptions detected.[/green]")
         return
@@ -97,7 +97,7 @@ def print_doctor_report(findings: List[Finding]):
         
     console.print("\n[dim]Run `assumeless explain <id>` for detailed guidance.[/dim]")
 
-def print_scan_summary(findings: List[Finding]):
+def print_scan_summary(findings: List[Finding]) -> None:
     """Minimal, CI-friendly scan output."""
     if not findings:
         console.print("[green]AssumeLess found no risky assumptions.[/green]")
@@ -112,7 +112,7 @@ def print_scan_summary(findings: List[Finding]):
         
     # No footer, clean exit.
 
-def print_json(findings: List[Finding]):
+def print_json(findings: List[Finding]) -> None:
     """Output machine-readable JSON."""
     data = []
     for f in findings:

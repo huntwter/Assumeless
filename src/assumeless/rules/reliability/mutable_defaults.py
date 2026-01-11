@@ -11,11 +11,14 @@ class MutableDefaultRule(ASTRule):
     def subscribe(self) -> List[Type[ast.AST]]:
         return [ast.FunctionDef]
 
-    def visit(self, node: ast.FunctionDef, visitor: AnalysisVisitor):
+    def visit(self, node: ast.AST, visitor: AnalysisVisitor) -> None:
         """
         Detects mutable default arguments (list, dict, set).
         Example: def foo(x=[]): ...
         """
+        if not isinstance(node, ast.FunctionDef):
+            return
+
         for default in node.args.defaults:
             is_mutable = False
             if isinstance(default, ast.List):

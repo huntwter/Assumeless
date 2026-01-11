@@ -5,7 +5,7 @@ from assumeless.core.models import Finding, BlastRadius
 
 console = Console()
 
-def print_finding(finding: Finding):
+def print_finding(finding: Finding) -> None:
     """
     Render a finding in the specific 'Assumeless' style.
     Style: Review comment, not error report.
@@ -28,7 +28,7 @@ def print_finding(finding: Finding):
     
     console.print(Panel(body, title=title, border_style=color, expand=False))
 
-def print_summary(n_findings: int, n_shown: int):
+def print_summary(n_findings: int, n_shown: int) -> None:
     """
     Print the calm summary footer.
     """

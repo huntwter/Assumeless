@@ -16,7 +16,7 @@ class FileHashCache:
         self.cache: Dict[str, str] = {}
         self.dirty = False
 
-    def load(self):
+    def load(self) -> None:
         """Load cache from disk."""
         if os.path.exists(self.cache_path):
             try:
@@ -27,7 +27,7 @@ class FileHashCache:
         else:
             self.cache = {}
 
-    def save(self):
+    def save(self) -> None:
         """Save cache to disk if modified."""
         if self.dirty:
             try:
@@ -51,7 +51,7 @@ class FileHashCache:
             
         return True
 
-    def update(self, file_path: str, content: str):
+    def update(self, file_path: str, content: str) -> None:
         """Updates the cache with the new hash for the file."""
         abs_path = os.path.abspath(file_path)
         current_hash = hashlib.md5(content.encode('utf-8')).hexdigest()

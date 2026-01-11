@@ -1,7 +1,7 @@
 import os
 import ast
 from collections import defaultdict
-from typing import List, Type, Dict
+from typing import List, Type, Dict, Optional
 from concurrent.futures import ProcessPoolExecutor, as_completed
 
 from assumeless.core.models import Finding
@@ -22,7 +22,7 @@ from assumeless.rules.reliability.todo_marker import TODORule
 from assumeless.core.cache import FileHashCache
 
 class Scanner:
-    def __init__(self, config: Config = None):
+    def __init__(self, config: Optional[Config] = None):
         self.config = config or Config()
         self.suppressor = SuppressionFilter()
         self.rules: List[ASTRule] = [

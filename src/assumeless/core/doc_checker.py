@@ -2,7 +2,7 @@ import re
 import os
 import ast
 import toml
-from typing import List
+from typing import List, Dict, Any, Union
 from pathlib import Path
 from assumeless.core.models import Finding, BlastRadius, Invisibility, FailureMode
 
@@ -12,14 +12,14 @@ class DocDriftDetector:
         self.findings: List[Finding] = []
         
         # Knowledge Base
-        self.doc_facts = {
+        self.doc_facts: Dict[str, List[Any]] = {
             "versions": [], # [(file, line, version_str)]
             "env_vars": [],  # [(file, line, var_name)]
             "packages": [],  # [(file, line, package_name)]
             "cli_claims": [], # [(file, line, context)]
         }
         
-        self.code_facts = {
+        self.code_facts: Dict[str, Any] = {
             "version": None,
             "name": None,
             "env_vars": set(),
@@ -32,7 +32,7 @@ class DocDriftDetector:
         self._compare()
         return self.findings
 
-    def _scan_codebase(self):
+    def _scan_codebase(self) -> None:
         # 1. Read pyproject.toml
         try:
             pyproject_path = self.root_path / "pyproject.toml"
@@ -66,7 +66,7 @@ class DocDriftDetector:
                     except Exception:
                         pass
 
-    def _extract_code_facts(self, tree: ast.AST):
+    def _extract_code_facts(self, tree: ast.AST) -> None:
         for node in ast.walk(tree):
             # Check for os.environ, os.getenv
             if isinstance(node, ast.Call):
@@ -96,7 +96,7 @@ class DocDriftDetector:
                     # Rough check for if __name__ == "__main__"
                     pass 
 
-    def _scan_docs(self):
+    def _scan_docs(self) -> None:
         doc_files = ["README.md"]
         docs_dir = self.root_path / "docs"
         if docs_dir.exists():
@@ -108,17 +108,17 @@ class DocDriftDetector:
             if not full_path.exists():
                 continue
                 
-            with open(full_path, "r", encoding="utf-8") as f:
-                lines = f.readlines()
+            with open(full_path, "r", encoding="utf-8") as file_obj:
+                lines = file_obj.readlines()
             
             for i, line in enumerate(lines, 1):
                 self._parse_doc_line(line, str(rel_path), i)
 
-    def _parse_doc_line(self, line: str, file: str, line_no: int):
+    def _parse_doc_line(self, line: str, file: str, line_no: int) -> None:
         # Version pattern: v1.1.0 or version 1.1.0
         # Avoid matching generic "version"
         ver_match = re.search(r'\bv?(\d+\.\d+\.\d+)\b', line)
-        if ver_match and "version" in line.lower() or line.strip().startswith("v"):
+        if ver_match is not None and ("version" in line.lower() or line.strip().startswith("v")):
              self.doc_facts["versions"].append((file, line_no, ver_match.group(1), line.strip()))
 
         # Env Var pattern: UPPER_CASE_WITH_UNDERSCORE (len > 3)
@@ -134,12 +134,12 @@ class DocDriftDetector:
             if match:
                 self.doc_facts["packages"].append((file, line_no, match.group(1), line.strip()))
 
-    def _compare(self):
+    def _compare(self) -> None:
         self._check_versions()
         self._check_package_names()
         self._check_env_vars()
 
-    def _add_finding(self, rule_id: str, file: str, line: int, content: str, desc: str):
+    def _add_finding(self, rule_id: str, file: str, line: int, content: str, desc: str) -> None:
         self.findings.append(Finding(
             id=rule_id,
             file_path=file,
@@ -152,7 +152,7 @@ class DocDriftDetector:
             rule_name="Documentation Drift"
         ))
 
-    def _check_versions(self):
+    def _check_versions(self) -> None:
         actual = self.code_facts["version"]
         if not actual:
             return
@@ -169,7 +169,7 @@ class DocDriftDetector:
                         f"Version in docs ({v}) matches neither installed version ({actual}) nor known history."
                     )
 
-    def _check_package_names(self):
+    def _check_package_names(self) -> None:
         actual = self.code_facts["name"]
         if not actual:
             return
@@ -181,7 +181,7 @@ class DocDriftDetector:
                     f"Installation instruction mentions '{name}' but package is '{actual}'."
                 )
 
-    def _check_env_vars(self):
+    def _check_env_vars(self) -> None:
         # If doc mentions ENV_VAR but code never uses it
         known_vars = self.code_facts["env_vars"]
         

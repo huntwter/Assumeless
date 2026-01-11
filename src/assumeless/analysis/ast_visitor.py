@@ -13,17 +13,17 @@ class AnalysisVisitor(ast.NodeVisitor):
         self.findings: List[Finding] = []
         self.current_scope: List[str] = [] # Stack of function/class names
 
-    def visit_FunctionDef(self, node: ast.FunctionDef):
+    def visit_FunctionDef(self, node: ast.FunctionDef) -> None:
         self.current_scope.append(node.name)
         self.generic_visit(node)
         self.current_scope.pop()
 
-    def visit_ClassDef(self, node: ast.ClassDef):
+    def visit_ClassDef(self, node: ast.ClassDef) -> None:
         self.current_scope.append(node.name)
         self.generic_visit(node)
         self.current_scope.pop()
 
-    def add_finding(self, finding: Finding):
+    def add_finding(self, finding: Finding) -> None:
         self.findings.append(finding)
 
     def get_line_content(self, lineno: int) -> str:

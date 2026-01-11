@@ -16,10 +16,13 @@ class TODORule(ASTRule):
         # We subscribe to Module.
         return [ast.Module]
 
-    def visit(self, node: ast.Module, visitor: AnalysisVisitor):
+    def visit(self, node: ast.AST, visitor: AnalysisVisitor) -> None:
         """
         Scans all lines for 'TODO'.
         """
+        if not isinstance(node, ast.Module):
+            return
+
         for i, line in enumerate(visitor.source_lines, 1):
             if "TODO" in line:
                 # Basic check, might be in string literal but v1.0 philosophy is "AssumeLess" -> Report it.

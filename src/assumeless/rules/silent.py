@@ -49,5 +49,6 @@ class EmptyExceptRule(Rule):
             description="Exception is caught and silently suppressed.",
             invisibility=Invisibility.BURIED, # Hard to see side effects
             blast_radius=BlastRadius.MODULE, # Usually affects local logic, could be worse
-            failure_mode=FailureMode.SILENT   # The definition of silent failure
+            failure_mode=FailureMode.SILENT,   # The definition of silent failure
+            rule_name=self.name
         )
