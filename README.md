@@ -6,7 +6,7 @@
 
 <div align="center">
 
-  <img src="https://capsule-render.vercel.app/api?type=waving&color=00B4D8&height=200&section=header&text=Assumeless&fontSize=80&animation=fadeIn&fontAlignY=35&" width="100%" alt="Assumeless Banner" />
+  <img src="https://capsule-render.vercel.app/api?type=waving&color=008080&height=200&section=header&text=Assumeless&fontSize=80&animation=fadeIn&fontAlignY=35&" width="100%" alt="Assumeless Banner" />
 
   <br />
 
@@ -26,7 +26,7 @@
 
   <br/><br/>
 
-[![Typing SVG](https://readme-typing-svg.herokuapp.com?font=Montserrat&size=40&pause=1000&color=00B4D8&center=true&vCenter=true&width=250&lines=Detect+Risky+Assumptions;Prevent+Silent+Failures;Audit+Documentation+Drift)](https://git.io/typing-svg)
+[![Typing SVG](https://readme-typing-svg.herokuapp.com?font=Fira+Code&size=30&pause=1000&color=008080&center=true&vCenter=true&width=435&lines=Detect+Risky+Assumptions;Prevent+Silent+Faliures;Audit+Documentation+Drift)](https://git.io/typing-svg)
 </div>
 
 
