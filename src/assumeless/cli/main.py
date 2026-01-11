@@ -1,5 +1,8 @@
 import os
+import click
 
+from typing import List
+from assumeless.core.engine import Scanner
 from assumeless.core.doctor import CodeDoctor
 from assumeless.core.config import Config
 from assumeless.cli.render import print_banner, print_doctor_report, print_scan_summary, console, print_json
