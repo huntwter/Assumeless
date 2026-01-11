@@ -185,6 +185,6 @@ This Project is licensed under the **Apache-2.0 License**.
 
 *Built with a focus on reliability, maintainability, and truth.*
 
-<img src="https://capsule-render.vercel.app/api?type=waving&color=00B4D8&height=100&section=footer" width="100%" />
+<img src="https://capsule-render.vercel.app/api?type=waving&color=008080&height=100&section=footer" width="100%" />
 
 </div>
