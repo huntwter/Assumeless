@@ -105,6 +105,61 @@ Assumeless enforces a strict catalog of assumption checks:
 
 ---
 
+## 📦 Installation
+
+AssumeLess can be installed in two ways:
+
+### 1) Via pip (recommended)
+
+Requires Python 3.9+
+
+```bash
+pip install assumeless
+
+```
+<br>
+<b> Then run: </b>
+
+```bash
+Assumeless version
+```
+<br>
+
+### 2) Standalone libraries (No python Required)
+<br>
+
+ <b>Get the latest release for your platform:</b>
+ 
+ *![Windows](https://github.com/huntwter/Assumeless/releases/download/v1.0.1/assumeless-windows.exe)
+ <br>
+ 
+ *![Macos](https://github.com/huntwter/Assumeless/releases/download/v1.0.1/assumeless-macos.exe)
+ <br>
+ 
+ *![Linux](https://github.com/huntwter/Assumeless/releases/download/v1.0.1/assumeless-linux.exe)
+ <br>
+ 
+ 
+---
+
+##  Future Updates
+
+### Planned Language Support
+
+- JavaScript
+- TypeScript
+- Node.js
+- React.js
+- Java
+- Kotlin
+
+### Planned Improvements
+
+- Detailed explanation pages for all Error IDs
+- Expanded rule catalog for multi-language analysis
+
+---
+
 ## License & Credits
 
 <div align="center">
@@ -123,6 +178,7 @@ This Project is licensed under the **Apache-2.0 License**.
 </a>
 
 <br />
+
 
 *Built with a focus on reliability, maintainability, and truth.*
 
