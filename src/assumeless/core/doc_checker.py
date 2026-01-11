@@ -2,7 +2,7 @@ import re
 import os
 import ast
 import toml
-from typing import List, Dict, Any, Union
+from typing import List, Dict, Any
 from pathlib import Path
 from assumeless.core.models import Finding, BlastRadius, Invisibility, FailureMode
 
