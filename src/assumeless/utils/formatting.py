@@ -1,7 +1,7 @@
 from rich.console import Console
 from rich.panel import Panel
 from rich.text import Text
-from assumeless.core.models import Finding, Invisibility, BlastRadius
+from assumeless.core.models import Finding, BlastRadius
 
 console = Console()
 

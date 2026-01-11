@@ -1,6 +1,6 @@
 import enum
 from dataclasses import dataclass, field
-from typing import Set, Optional, Dict, List, Any
+
 
 class Invisibility(enum.Enum):
     """

@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
-from typing import List, Type, Any
+from typing import List, Type
 import ast
-from assumeless.core.models import Finding
+
 from assumeless.analysis.ast_visitor import AnalysisVisitor
 
 class ASTRule(ABC):

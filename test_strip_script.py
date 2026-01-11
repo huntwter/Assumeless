@@ -1,11 +1,10 @@
 import tokenize
-import os
+
 from io import BytesIO
 
 def strip_comments_from_source(source):
     io_obj = BytesIO(source.encode('utf-8'))
-    out = []
-    previous_token_type = None
+
     
     try:
         tokens = tokenize.tokenize(io_obj.readline)

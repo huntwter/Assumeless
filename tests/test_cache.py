@@ -1,7 +1,7 @@
 import unittest
 import os
 import shutil
-from assumeless.core.cache import FileHashCache, CACHE_FILENAME
+from assumeless.core.cache import FileHashCache
 
 class TestCache(unittest.TestCase):
     def setUp(self):

@@ -1,11 +1,11 @@
 from rich.console import Console
 from rich.panel import Panel
 from rich.text import Text
-from typing import List, Dict
+from typing import List
 import json
 from dataclasses import asdict
 from itertools import groupby
-from assumeless.core.models import Finding, Invisibility, BlastRadius, FailureMode
+from assumeless.core.models import Finding, BlastRadius, FailureMode
 
 console = Console()
 
@@ -48,8 +48,10 @@ def print_grouped_panel(rule_id: str, findings: List[Finding], index: int):
     description = title_finding.description
     
     color = "white"
-    if title_finding.blast_radius == BlastRadius.SYSTEM: color = "yellow"
-    if title_finding.failure_mode in (FailureMode.CORRUPTION, FailureMode.SILENT): color = "red"
+    if title_finding.blast_radius == BlastRadius.SYSTEM:
+        color = "yellow"
+    if title_finding.failure_mode in (FailureMode.CORRUPTION, FailureMode.SILENT):
+        color = "red"
     
     title = f"{index}) {description} ({rule_id})"
     

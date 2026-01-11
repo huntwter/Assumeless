@@ -2,7 +2,7 @@ import re
 import os
 import ast
 import toml
-from typing import List, Dict, Set, Tuple
+from typing import List
 from pathlib import Path
 from assumeless.core.models import Finding, BlastRadius, Invisibility, FailureMode
 
@@ -51,8 +51,10 @@ class DocDriftDetector:
 
         # 2. Scan Python files for AST facts
         for root, dirs, files in os.walk(self.root_path):
-            if "venv" in dirs: dirs.remove("venv")
-            if ".git" in dirs: dirs.remove(".git")
+            if "venv" in dirs:
+                dirs.remove("venv")
+            if ".git" in dirs:
+                dirs.remove(".git")
             
             for file in files:
                 if file.endswith(".py"):
@@ -152,9 +154,10 @@ class DocDriftDetector:
 
     def _check_versions(self):
         actual = self.code_facts["version"]
-        if not actual: return
+        if not actual:
+            return
         
-        for f, l, v, content in self.doc_facts["versions"]:
+        for f, line, v, content in self.doc_facts["versions"]:
             if v != actual:
                 # Heuristic: only flag if it looks like The Project Version
                 if "assumeless" in content.lower() or "version" in content.lower():
@@ -168,9 +171,10 @@ class DocDriftDetector:
 
     def _check_package_names(self):
         actual = self.code_facts["name"]
-        if not actual: return
+        if not actual:
+            return
 
-        for f, l, name, content in self.doc_facts["packages"]:
+        for f, line, name, content in self.doc_facts["packages"]:
             if name != actual and name != "." and name != "-e":
                 self._add_finding(
                     "AL-DOC-05", f, l, content,
@@ -181,7 +185,7 @@ class DocDriftDetector:
         # If doc mentions ENV_VAR but code never uses it
         known_vars = self.code_facts["env_vars"]
         
-        for f, l, var, content in self.doc_facts["env_vars"]:
+        for f, line, var, content in self.doc_facts["env_vars"]:
             if var not in known_vars:
                 # Check strictness: maybe it is used widely but dynamically?
                 # AssumeLess philosophy -> Use AST.

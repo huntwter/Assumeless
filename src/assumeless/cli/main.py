@@ -1,9 +1,5 @@
-import click
-import sys
-import json
 import os
-from typing import List, Optional
-from assumeless.core.engine import Scanner
+
 from assumeless.core.doctor import CodeDoctor
 from assumeless.core.config import Config
 from assumeless.cli.render import print_banner, print_doctor_report, print_scan_summary, console, print_json
@@ -93,7 +89,8 @@ def explain(finding_id):
             if rule.id == finding_id:
                 found_rule = rule
                 break
-        if found_rule: break
+        if found_rule:
+            break
     
     if found_rule:
         console.print(f"[bold cyan]Explanation for {finding_id}[/bold cyan]")

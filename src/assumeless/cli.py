@@ -1,5 +1,4 @@
 import click
-import os
 from assumeless.core.engine import Scanner
 from assumeless.core.doctor import CodeDoctor
 from assumeless.utils.formatting import print_finding, print_summary, console

@@ -25,17 +25,24 @@ class CodeDoctor:
         score = 0
         
         # Impact Baseline
-        if f.blast_radius == BlastRadius.DATA: score += 100
-        elif f.blast_radius == BlastRadius.SYSTEM: score += 50
-        elif f.blast_radius == BlastRadius.MODULE: score += 20
+        if f.blast_radius == BlastRadius.DATA:
+            score += 100
+        elif f.blast_radius == BlastRadius.SYSTEM:
+            score += 50
+        elif f.blast_radius == BlastRadius.MODULE:
+            score += 20
         
         # Stealth Multiplier
-        if f.invisibility == Invisibility.BURIED: score += 40
-        elif f.invisibility == Invisibility.HIDDEN: score += 30
+        if f.invisibility == Invisibility.BURIED:
+            score += 40
+        elif f.invisibility == Invisibility.HIDDEN:
+            score += 30
         
         # Mode Modifier
-        if f.failure_mode == FailureMode.SILENT: score += 25
-        if f.failure_mode == FailureMode.CORRUPTION: score += 50
+        if f.failure_mode == FailureMode.SILENT:
+            score += 25
+        if f.failure_mode == FailureMode.CORRUPTION:
+            score += 50
 
         # Heuristic Combinations
         # A hidden system dependency is very bad (e.g. Env var hidden deep)

@@ -1,5 +1,5 @@
 import ast
-from typing import List, Optional, Any
+from typing import List
 from assumeless.core.models import Finding
 
 class AnalysisVisitor(ast.NodeVisitor):

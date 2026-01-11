@@ -1,7 +1,7 @@
 import os
 import json
 import hashlib
-from typing import Dict, Any
+from typing import Dict
 
 CACHE_FILENAME = ".assumeless_cache"
 

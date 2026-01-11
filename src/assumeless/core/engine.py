@@ -1,7 +1,7 @@
 import os
 import ast
 from collections import defaultdict
-from typing import List, Type, Dict, Any
+from typing import List, Type, Dict
 from concurrent.futures import ProcessPoolExecutor, as_completed
 
 from assumeless.core.models import Finding
@@ -108,7 +108,7 @@ class Scanner:
                         with open(fpath, "r", encoding="utf-8") as f:
                             content = f.read()
                         self.cache.update(fpath, content)
-                    except:
+                    except Exception:
                         pass
         else:
             with ProcessPoolExecutor() as executor:

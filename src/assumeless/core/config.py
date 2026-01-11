@@ -1,6 +1,6 @@
 import os
 import toml
-from typing import List, Optional
+from typing import List
 from dataclasses import dataclass, field
 
 DEFAULT_CONFIG_FILENAME = "assumeless.toml"
