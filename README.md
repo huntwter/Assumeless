@@ -26,7 +26,7 @@
 
   <br/><br/>
 
-[![Typing SVG](https://readme-typing-svg.herokuapp.com?font=Montserrat&size=40&pause=1000&color=00B4D8&center=true&vCenter=true&width=435&lines=Detect+Risky+Assumptions;Prevent+Silent+Failures;Audit+Documentation+Drift)](https://git.io/typing-svg)
+[![Typing SVG](https://readme-typing-svg.herokuapp.com?font=Montserrat&size=40&pause=1000&color=00B4D8&center=true&vCenter=true&width=250&lines=Detect+Risky+Assumptions;Prevent+Silent+Failures;Audit+Documentation+Drift)](https://git.io/typing-svg)
 </div>
 
 
