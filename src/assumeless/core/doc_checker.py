@@ -165,7 +165,7 @@ class DocDriftDetector:
                     # Try to filter: checks if content string is likely about THIS package.
                     # For now, be permissive but specific in description.
                     self._add_finding(
-                        "AL-DOC-10", f, l, content,
+                        "AL-DOC-10", f, line, content,
                         f"Version in docs ({v}) matches neither installed version ({actual}) nor known history."
                     )
 
@@ -177,7 +177,7 @@ class DocDriftDetector:
         for f, line, name, content in self.doc_facts["packages"]:
             if name != actual and name != "." and name != "-e":
                 self._add_finding(
-                    "AL-DOC-05", f, l, content,
+                    "AL-DOC-05", f, line, content,
                     f"Installation instruction mentions '{name}' but package is '{actual}'."
                 )
 
@@ -190,6 +190,6 @@ class DocDriftDetector:
                 # Check strictness: maybe it is used widely but dynamically?
                 # AssumeLess philosophy -> Use AST.
                 self._add_finding(
-                    "AL-DOC-06", f, l, content,
+                    "AL-DOC-06", f, line, content,
                     f"Environment variable '{var}' is documented but not detected in codebase AST."
                 )
