@@ -125,19 +125,22 @@ Assumeless version
 ```
 <br>
 
-### 2) Standalone libraries (No python Required)
-<br>
+### 2) Standalone Binaries (No Python Required)
 
- <b>Get the latest release for your platform:</b>
- 
- *![Windows](https://github.com/huntwter/Assumeless/releases/download/v1.0.1/assumeless-windows.exe)
- <br>
- 
- *![Macos](https://github.com/huntwter/Assumeless/releases/download/v1.0.1/assumeless-macos.exe)
- <br>
- 
- *![Linux](https://github.com/huntwter/Assumeless/releases/download/v1.0.1/assumeless-linux.exe)
- <br>
+**Get the latest release for your platform:**
+
+<a href="https://github.com/huntwter/Assumeless/releases/latest/download/assumeless.exe">
+  <img src="https://img.shields.io/badge/Download-Windows-blue?logo=windows&logoColor=white">
+</a>
+
+<a href="https://github.com/huntwter/Assumeless/releases/latest/download/assumeless-macos">
+  <img src="https://img.shields.io/badge/Download-macOS-black?logo=apple&logoColor=white">
+</a>
+
+<a href="https://github.com/huntwter/Assumeless/releases/latest/download/assumeless-linux">
+  <img src="https://img.shields.io/badge/Download-Linux-orange?logo=linux&logoColor=white">
+</a>
+
  
  
 ---
